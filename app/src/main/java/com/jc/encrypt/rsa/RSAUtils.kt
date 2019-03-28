@@ -23,6 +23,7 @@ object RSAUtils {
      * 生成RSA密钥对
      * keyLength: 密钥长度,范围：512～2048,一般1024
      */
+    @JvmStatic
     fun generateRSAKeyPair(keyLength: Int): KeyPair {
         val generator = KeyPairGenerator.getInstance(RSA)
         generator.initialize(keyLength)
@@ -32,6 +33,7 @@ object RSAUtils {
     /**
      * 获取公钥
      */
+    @JvmStatic
     fun getPublicKey(decode: ByteArray): PublicKey {
         val keySpec = X509EncodedKeySpec(decode)
         val keyFactory = KeyFactory.getInstance(RSA)
@@ -41,6 +43,7 @@ object RSAUtils {
     /**
      * 获取公钥
      */
+    @JvmStatic
     fun getPublicKey(modulesStr: String, exponentStr: String): PublicKey {
         val modules = BigInteger(modulesStr)
         val exponent = BigInteger(exponentStr)
@@ -52,6 +55,7 @@ object RSAUtils {
     /**
      * 获取私钥
      */
+    @JvmStatic
     fun getPrivate(decode: ByteArray): PrivateKey {
         val keySpec = PKCS8EncodedKeySpec(decode)
         val keyFactory = KeyFactory.getInstance(RSA)
@@ -61,6 +65,7 @@ object RSAUtils {
     /**
      * 获取私钥
      */
+    @JvmStatic
     fun getPrivateKey(modulesStr: String, exponentStr: String): PrivateKey {
         val modules = BigInteger(modulesStr)
         val exponent = BigInteger(exponentStr)
@@ -72,6 +77,7 @@ object RSAUtils {
     /**
      * 使用公钥加密
      */
+    @JvmStatic
     fun encrypt(data: ByteArray, publicKey: PublicKey): ByteArray {
         val cipher = Cipher.getInstance(ECB_PKCS1_PADDING)
         cipher.init(Cipher.ENCRYPT_MODE, publicKey)
@@ -82,6 +88,7 @@ object RSAUtils {
     /**
      * 使用私钥加密
      */
+    @JvmStatic
     fun encrypt(data: ByteArray, privateKey: PrivateKey): ByteArray {
         val cipher = Cipher.getInstance(ECB_PKCS1_PADDING)
         cipher.init(Cipher.ENCRYPT_MODE, privateKey)
@@ -91,6 +98,7 @@ object RSAUtils {
     /**
      * 使用公钥解密
      */
+    @JvmStatic
     fun decrypt(data: ByteArray, publicKey: PublicKey): ByteArray {
         val cipher = Cipher.getInstance(ECB_PKCS1_PADDING)
         cipher.init(Cipher.DECRYPT_MODE, publicKey)
@@ -100,6 +108,7 @@ object RSAUtils {
     /**
      * 使用私钥解密
      */
+    @JvmStatic
     fun decrypt(data: ByteArray, privateKey: PrivateKey): ByteArray {
         val cipher = Cipher.getInstance(ECB_PKCS1_PADDING)
         cipher.init(Cipher.DECRYPT_MODE, privateKey)
@@ -110,6 +119,7 @@ object RSAUtils {
     /**
      * 签名
      */
+    @JvmStatic
     fun sign(data: ByteArray, privateKey: PrivateKey): ByteArray {
         val signature = Signature.getInstance(SIGN_ALGORITHMS)
         signature.initSign(privateKey)
@@ -123,6 +133,7 @@ object RSAUtils {
      * sign：签名后结果
      * publicKey：公钥
      */
+    @JvmStatic
     fun verify(data: ByteArray, sign: ByteArray, publicKey: PublicKey): Boolean {
         val signature = Signature.getInstance(SIGN_ALGORITHMS)
         signature.initVerify(publicKey)

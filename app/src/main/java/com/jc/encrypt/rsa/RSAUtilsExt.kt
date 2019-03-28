@@ -16,6 +16,7 @@ object RSAUtilsExt {
     /**
      * 使用公钥分段加密
      */
+    @JvmStatic
     fun encrypt(data: ByteArray, publicKey: PublicKey): ByteArray {
         val dataSize = data.size
         if (dataSize <= SUPPORT_BUFFER_SIZE) {
@@ -59,6 +60,7 @@ object RSAUtilsExt {
     /**
      * 使用私钥分段加密
      */
+    @JvmStatic
     fun encrypt(data: ByteArray, privateKey: PrivateKey): ByteArray {
         val dataSize = data.size
         if (dataSize <= SUPPORT_BUFFER_SIZE) {
@@ -102,6 +104,7 @@ object RSAUtilsExt {
     /**
      * 使用公钥分段解密
      */
+    @JvmStatic
     fun decrypt(data: ByteArray, publicKey: PublicKey): ByteArray {
         val splitLen = DEFAULT_SPLIT.size
         val dataSize = data.size
@@ -156,6 +159,7 @@ object RSAUtilsExt {
     /**
      * 使用私钥分段解密
      */
+    @JvmStatic
     fun decrypt(data: ByteArray, privateKey: PrivateKey): ByteArray {
         val splitLen = DEFAULT_SPLIT.size
         val dataSize = data.size

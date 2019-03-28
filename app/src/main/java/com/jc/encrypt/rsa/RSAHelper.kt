@@ -15,6 +15,7 @@ object RSAHelper {
     /**
      * 随机生成密钥对，并base64编码保存在指定路径下
      */
+    @JvmStatic
     fun genKeyPair(path: String) {
         val keyPair = RSAUtils.generateRSAKeyPair(RSAUtils.DEFAULT_KEY_SIZE)
         val publicKey = keyPair.public as RSAPublicKey
@@ -52,6 +53,7 @@ object RSAHelper {
     /**
      * 读取指定目录下的公钥文件内容
      */
+    @JvmStatic
     fun readPublicKeyFile(path: String): String? {
         try {
             val reader = BufferedReader(FileReader(path + File.separator + "publicKey.keystore"))
@@ -74,6 +76,7 @@ object RSAHelper {
     /**
      * 读取指定目录下的私钥文件内容
      */
+    @JvmStatic
     fun readPrivateKeyFile(path: String): String? {
         try {
             val reader = BufferedReader(FileReader(path + File.separator + "privateKey.keystore"))
@@ -96,6 +99,7 @@ object RSAHelper {
     /**
      * 从base64编码后的字符串中获取公钥
      */
+    @JvmStatic
     fun getPublicKey(publicKeyBase64Str: String): PublicKey {
         val decode = Base64.decode(publicKeyBase64Str)
         return RSAUtils.getPublicKey(decode)
@@ -104,6 +108,7 @@ object RSAHelper {
     /**
      * 从base64编码后的字符串中获取私钥
      */
+    @JvmStatic
     fun getPrivateKey(privateKeyBase64Str: String): PrivateKey {
         val decode = Base64.decode(privateKeyBase64Str)
         return RSAUtils.getPrivate(decode)
